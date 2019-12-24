@@ -48,13 +48,26 @@ public class TestCase {
 	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
 	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
       
+      //問題点:Frequencerのfor文で配列を起こすような場合がある
+	    myObject.setTarget("oi".getBytes());
+	    myObject.frequency();
+      
+	}
+	catch(Exception e) {
+	    System.out.println("frequencyでのバグ");
+	}
+  try{
+	    FrequencerInterface  myObject;
+	    int freq;
+	    System.out.println("checking s4.B193376.Frequencer");
+	    myObject = new s4.B193376.Frequencer();
       //問題点:subFreqencyでmyTargetの配列を超える可能性がある
       //subByteFrequencyの検査
       //わざとエラーを出す（subByteFrequencyでmyTargetに範囲を超えさせる）
 	    freq = myObject.subByteFrequency(-1,99);
 	}
 	catch(Exception e) {
-	    System.out.println("Exception occurred: STOP");
+	    System.out.println("subByteFrequencyでのバグ");
 	}
 
 	try {
