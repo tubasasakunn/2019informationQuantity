@@ -1,5 +1,6 @@
 package s4.B193376;
 
+import java.util.Random;
 import java.lang.*;
 import s4.specification.*;
 import java.util.Arrays;
@@ -103,6 +104,9 @@ public class Frequencer implements FrequencerInterface {
         //
         // ここに、int suffixArrayをソートするコードを書け。
         // 順番はsuffixCompareで定義されるものとする。
+
+        //バブルソート
+        /*
         for (int i = 0; i < suffixArray.length - 1; i++) {
             for (int j = i + 1; j < suffixArray.length; j++) {
                 if (suffixCompare(suffixArray[i], suffixArray[j]) == 1) {
@@ -112,8 +116,38 @@ public class Frequencer implements FrequencerInterface {
                 }
             }
         }
-    }
+        */
 
+
+        //クイックソート
+        quick_sort(suffixArray,0,suffixArray.length-1);
+    }
+//クイックソートを行うメソッド
+    void quick_sort(int[] d,int left,int right){
+      if (left>=right) {
+            return;
+        }
+      Random rnd = new Random();
+      int p = d[(left+right)/2];//軸要素の選択
+      int r=right;
+      int l=left;
+      int tmp;
+      while(l<r){
+        while(suffixCompare(d[l],p)==-1){l++;}
+        while(suffixCompare(d[r],p)==1){r--;}
+        if(l<=r){
+          tmp=d[l];
+          d[l]=d[r];
+          d[r]=tmp;
+          l++;
+          r--;
+        }
+      }
+      
+      quick_sort(d,l,right);
+      quick_sort(d,left,r);
+      return; 
+    }
     // Suffix Arrayを用いて、文字列の頻度を求めるコード
     // ここから、指定する範囲のコードは変更してはならない。
 
@@ -277,7 +311,6 @@ public class Frequencer implements FrequencerInterface {
             //
             // **** Please write code to check subByteStartIndex, and subByteEndIndex
             //
-            System.out.println("aaa");
 
             int result = frequencerObject.frequency();
             System.out.print("Freq = " + result + " ");
@@ -291,10 +324,8 @@ public class Frequencer implements FrequencerInterface {
             System.out.println("開始時刻：" + startTime + "ns");
             System.out.println("終了時刻：" + endTime + " ns");
             System.out.println("処理時間：" + (endTime - startTime) + " ns");
-
         } catch (Exception e) {
             System.out.println("STOP");
         }
-
     }
 }
