@@ -1,4 +1,4 @@
-package s4.umemura;
+package s4.B193376;
 
 import java.lang.*;
 import s4.specification.*;
@@ -263,6 +263,8 @@ public class Frequencer implements FrequencerInterface {
     public static void main(String[] args) {
         Frequencer frequencerObject;
         try {
+            
+            long startTime = System.nanoTime();
             frequencerObject = new Frequencer();
             frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
             frequencerObject.printSuffixArray(); // you may use this line for DEBUG
@@ -275,6 +277,7 @@ public class Frequencer implements FrequencerInterface {
             //
             // **** Please write code to check subByteStartIndex, and subByteEndIndex
             //
+            System.out.println("aaa");
 
             int result = frequencerObject.frequency();
             System.out.print("Freq = " + result + " ");
@@ -283,9 +286,15 @@ public class Frequencer implements FrequencerInterface {
             } else {
                 System.out.println("WRONG");
             }
+            
+            long endTime = System.nanoTime();
+            System.out.println("開始時刻：" + startTime + "ns");
+            System.out.println("終了時刻：" + endTime + " ns");
+            System.out.println("処理時間：" + (endTime - startTime) + " ns");
 
         } catch (Exception e) {
             System.out.println("STOP");
         }
+
     }
 }
