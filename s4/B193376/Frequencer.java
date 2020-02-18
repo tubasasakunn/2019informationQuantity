@@ -242,14 +242,54 @@ public class Frequencer implements FrequencerInterface {
         // ここにコードを記述せよ。
         //
         int startMatchIndex = -1;
+        // notrmal serch
         for (int i = 0; i < mySpace.length; i++) {
             if (targetCompare(suffixArray[i], start, end) == 0 || targetCompare(suffixArray[i], start, end) == 1) {
                 startMatchIndex = i;
                 break;
             }
         }
+        //binary serch
+        /*
+        int i=mySpace.length/2;
+        int ierr=i/2;
+        for (int j = 0; j < mySpace.length; j++) {
+          int key = targetCompare(suffixArray[i],start,end);
+            //hit
+          if(i>0 && key!=0){
+            i=(int) i-ierr;
+            if(targetCompare(suffixArray[i-1],start,end)==-1){
+              startMatchIndex=i;
+              break;
+            }
+          }else{
+            if(i==0){
+              startMatchIndex=i;
+              break;
+            }
+            i=i+ierr;
+          }
+
+          switch(key){
+            case 0:
+              i=(int) i-ierr;
+              break;
+
+            case 1:
+              i=(int) i-ierr;
+              break;
+
+            case -1:
+              i=(int) i+ierr;
+              break;
+          }
+          ierr=(int)(ierr/2);
+        }
+*/
+
+
         if (startMatchIndex != -1) {
-            return startMatchIndex;
+          return startMatchIndex;
         }
         return suffixArray.length; // このコードは変更しなければならない。
     }
